@@ -1,9 +1,27 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 const url = require("../../utils/Base_V5")
+const header = require("../../configs/headers")
 async function scrapePlayers(anime_id) {
+    const urlsToTry = [
+        `${url}/movies/${anime_id}/`,
+        `${url}/movies/${anime_id}`,
+    ];
+    let data;
+    for (const pageUrl of urlsToTry) {
+        try {
+            const response = await axios.get(pageUrl, {
+                headers: header,
+                timeout: 10000
+            });
+            data = response.data;
+            if (data) break;
+        } catch (e) {
+            continue;
+        }
+    }
 
-    const { data } = await axios.get(`${url}/movies/${anime_id}`);
+    if (!data) return [];
 
     const $ = cheerio.load(data);
 
@@ -24,7 +42,10 @@ async function scrapePlayers(anime_id) {
 
         try {
 
-            const { data } = await axios.get(link);
+            const { data } = await axios.get(link, {
+                headers: header,
+                timeout: 10000
+            });
 
             const $$ = cheerio.load(data);
 

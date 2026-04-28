@@ -39,7 +39,7 @@ The repository owner is not responsible for any misuse or illegal activities per
     - [Animes](#anime)
     - [Cartoons](#cartoons)
     - [Networks](#networks)
-    - [Genres](#genres)
+    - [Genres](#genre)
     - [Languages](#languages)
     - [Schedule](#schedule)
     - [Anime Stream Info](#anime-stream-info)
@@ -819,6 +819,88 @@ console.log(resp.data);
       },
       {
         "iframe": "https://vidmoly.net/embed-tt84iht2acpa.html"
+      }
+    ]
+  }
+}
+```
+### Genre
+```bash
+GET /api/genre
+```
+
+### 🔗 Endpoint
+
+```bash
+/api/genre?id={string}
+```
+#### Example of request
+
+
+```javascript
+import axios from "axios";
+const resp = await axios.get("/api/genre?id=animation");
+console.log(resp.data);
+```
+
+#### Sample response
+
+```javascript
+{
+  "success": true,
+  "results": {
+    "success": true,
+    "currentPage": 1,
+    "results": [
+      {
+        "title": "The Ramparts of Ice",
+        "anime_id": "seriesthe-ramparts-of-ice",
+        "poster": "https://image.tmdb.org/t/p/w500/rke9UC2QrogvxiQD9TGpbvqDosi.jpg"
+      },
+      {
+        "title": "Dr. STONE",
+        "anime_id": "seriesdr-stone",
+        "poster": "https://image.tmdb.org/t/p/w500/x96E9mxxQf5KzXOzIu0ldsfc3QK.jpg"
+      },
+      {
+        "title": "Fairy Tail",
+        "anime_id": "seriesfairy-tail",
+        "poster": "https://image.tmdb.org/t/p/w500/dorzFzD65utfD39pEu7PbcXmEFH.jpg"
+      },
+      {
+        "title": "Dorohedoro",
+        "anime_id": "seriesdorohedoro",
+        "poster": "https://image.tmdb.org/t/p/w500/zSMmRTopPIRr6913KX8pyiV6zsK.jpg"
+      },
+      {
+        "title": "Scarlet",
+        "anime_id": "moviesscarlet",
+        "poster": "https://image.tmdb.org/t/p/w500/2O2tOyS4kvO9GtFPHpWmbXvfRQv.jpg"
+      },
+      {
+        "title": "Fullmetal Alchemist: Brotherhood",
+        "anime_id": "seriesfullmetal-alchemist-brotherhood",
+        "poster": "https://image.tmdb.org/t/p/w500/5ZFUEOULaVml7pQuXxhpR2SmVUw.jpg"
+      },
+      {
+        "title": "Tokyo Ghoul All",
+        "anime_id": "seriestokyo-ghoul-all",
+        "poster": "https://image.tmdb.org/t/p/w500/wCn96kKQBRQhImMorf3napmCjfM.jpg"
+      },
+      {
+        "title": "The Beginning After the End",
+        "anime_id": "seriesthe-beginning-after-the-end",
+        "poster": "https://image.tmdb.org/t/p/w500/d23Lspt2mbVP8WwJNgb5Sg4Kdhu.jpg"
+      },
+      {
+        "title": "Witch Hat Atelier",
+        "anime_id": "serieswitch-hat-atelier",
+        "poster": "https://image.tmdb.org/t/p/w500/78m1Tv3suHmUryTI9VNPwKLKjHZ.jpg"
+      },
+      {
+        "title": "BOFURI: I Don't Want to Get Hurt, so I'll Max Out My Defense.",
+        "anime_id": "seriesbofuri-i-dont-want-to-get-hurt-so-ill-max-out-my-defense",
+        "poster": "https://image.tmdb.org/t/p/w500/2PLjOPstyBIWdQftMLnYRE5Cojg.jpg"
       }
     ]
   }
