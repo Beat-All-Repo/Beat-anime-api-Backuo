@@ -1,6 +1,4 @@
 ![Banner](https://i.pinimg.com/1200x/77/e5/c5/77e5c5b3543c4312a06d8279aa0add6a.jpg)
-# AniStream
-> Cheackout [Anistream](https://anistream69.pages.dev/) Powered By [anime-api](https://github.com/Prathmesh6968/anime-api).
 
 # Hindi Anime API
 
