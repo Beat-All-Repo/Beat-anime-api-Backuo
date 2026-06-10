@@ -1,5 +1,5 @@
 /**
- * @desc    All Required Inported Functions, Packages and Modules
+ * @desc    All Required Imported Functions, Packages and Modules
  */
 const home = require("./routes/home.routes.js")
 const search = require("./routes/search.routes.js")
@@ -9,35 +9,67 @@ const info = require("./routes/info.routes.js")
 const moviesInfo = require("./routes/movieStream.routes.js")
 const movies = require("./routes/movies.routes.js")
 const stream = require("./routes/stream.routes.js")
-
 const series = require("./routes/series.routes.js")
-const express = require("express")
 
+const express = require("express")
 const cors = require("cors")
+
 const app = express()
+
 app.use(cors())
 
 /**
- * @desc    All Routes
- * @access  Public
+ * @desc    API Key Middleware
+ */
+const apiKeyMiddleware = (req, res, next) => {
+  const apiKey = req.headers["x-api-key"]
+
+  if (!apiKey) {
+    return res.status(401).json({
+      success: false,
+      message: "API key required"
+    })
+  }
+
+  if (apiKey !== process.env.API_KEY) {
+    return res.status(403).json({
+      success: false,
+      message: "Invalid API key"
+    })
+  }
+
+  next()
+}
+
+/**
+ * @desc    Home Route (Public)
  */
 app.get("/", (req, res) => {
   res.json({
     success: true,
     message: {
-      Documentation: "For Documentation prefer to this repository https://github.com/Prathmesh6968/anime-api.git"
+      Documentation:
+        "For Documentation prefer to this repository https://github.com/Prathmesh6968/anime-api.git"
     }
   })
 })
 
+/**
+ * @desc    Protect All API Routes
+ */
+app.use("/api", apiKeyMiddleware)
 
+/**
+ * @desc    All Routes
+ * @access  Protected
+ */
 app.use("/api", home)
-app.use("/api/search",search)
-app.use("/api/newadded",newAddedEpisode)
-app.use("/api/info",info)
-app.use("/api/episode",episode)
-app.use("/api/movie",moviesInfo)
-app.use("/api/movies",movies)
+app.use("/api/search", search)
+app.use("/api/newadded", newAddedEpisode)
+app.use("/api/info", info)
+app.use("/api/episode", episode)
+app.use("/api/movie", moviesInfo)
+app.use("/api/movies", movies)
 app.use("/api/series", series)
 app.use("/api/stream", stream)
 
